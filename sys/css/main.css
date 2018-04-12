@@ -107,6 +107,7 @@ input.btn {
     background : #2E9CE6; /* Forcer l'opacité complete!! */
     border : 1px solid #AEA0FF; /* #003A61; */
     display:block;
+    padding:1px;
     overflow: hidden;
 
 }

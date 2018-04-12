@@ -105,7 +105,7 @@ class Element
      * Construit le text des propriétés css sérialisées.
      * @return rien
      */
-    public function SerializeStyle()
+    protected function SerializeStyle()
     {
         $this->_Style = "";
         foreach($this->_CssProperties as $property => $Value)

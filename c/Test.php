@@ -14,17 +14,20 @@ namespace App\Controller;
 
 class Test // extends Controller // Plus tard, l'on devra instancier un vrai Controller pour du vrai traitement ;=) ...
 {
-    public static function execute(Request $aRequest) : bool
+    public function Test() :bool{
+        echo "<pre> Test::Test() : Je suis une pseudo reflexion....</pre>";
+        return true;
+    }
+
+    public static function execute(?Object $Args) : bool
     {
-        echo"<pre>Test::execute:\n"; print_r($aRequest); echo "</pre>";
-        echo "<pre>::"; print_r($aRequest->Args()) ; echo "</pre>";
-        $Args = json_decode($aRequest->Args(),true); // Strictement un tableau associatif.
-        echo"php::json_decode: <pre>[ '"; print_r($Args) ; echo "' ]</pre>";
-        echo "Test.php::execute : <ul> <li>Nom du contr&ocirc;leur: `".$aRequest->ControllerName()."` </li><li>Argument(s): `". $aRequest->Args(). "`</li></ul>";
+        echo "<pre>Test::execute(\$Args) Args:\n"; print_r($Args); echo "</pre>";
         return true;
     }
 };
 
-function execute(Request $aRequest):bool { return Test::execute($aRequest); }
+function execute(?Object $Args):bool {
+    return Test::execute($Args);
+}
 
 ?>

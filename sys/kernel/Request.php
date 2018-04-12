@@ -21,25 +21,29 @@ class Request
      */
     public function __construct()
     {
+
         if(count($_POST))
             $this->_Data = $_POST;
         else {
-            if (count($_GET))
-                $this->_Data = $_GET;
+            if (count($_GET)) {
+                foreach($_GET as $K => $dummy)
+                $this->_Data = json_decode($K);
+                echo"<pre>Request::__construct this->_Data:\n";print_r($this->_Data); echo "</pre>";
+                $this->_Controler = $this->_Data->C;
+                //$this->_Args = $this->_Data->Args;
+            }
             else {
                 $this->_Data = null;
                 throw new \Exception("Request: Empty (Debug: Request::Data == null)");
             }
         }
 
-        if(!isset($this->_Data['C']))
+        if(!isset($this->_Data))
             throw new \Exception("Request: Empty (Debug: Request::Data['C'] unset)");
-
-        $this->_Controler = isset($this->_Data['C']) ? $this->_Data['C'] : '';
-        $this->_Args = isset($this->_Data['Args']) ? $this->_Data['Args'] : null;
 
     }
 
+    public function Args() : ?Object { return $this->_Data->Args; }
     public function ControllerName(): string { return $this->_Controler; }
-    public function Args(): ?string { return $this->_Args; }
+
 }

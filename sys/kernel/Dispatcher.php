@@ -21,8 +21,6 @@ class Dispatcher
         throw new \Exception("Dispatcher::__construct : Le Dispatcher ne peut pas être instancié! (Erreur interne...)");
     }
 
-
-
     public static function Dispatch() : bool
     {
         try{
@@ -32,15 +30,13 @@ class Dispatcher
             Dispatcher::PushMessage("Dispatcher::Dispatch: Controller Location:[ ".$R.' ]');
             require $R;
             // One-shot : Pas de probs. "execute" n'est instancié qu'une fois et php termine après....
-            return execute($Req);
+            return execute($Req->Args());
         }
         catch(\Exception $e) {
-            Dispatcher::PushMessage($e->getMessage());
+            Dispatcher::PushMessage("Catched in Dispatcher::Dispatch:".$e->getMessage());
             return false;
         }
         return true;
     }
-
-
 }
 
