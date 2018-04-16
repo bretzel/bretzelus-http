@@ -72,6 +72,17 @@ class Element
     }
 
     /**
+     * @return rien
+     */
+    public function cssClass(?string $aClass = null)
+    {
+        if(isset($aClass))
+            $this->_Classes[] = aClass;
+
+    }
+
+
+    /**
      * Recherche l'instance d'un élément enfant dans la liste des enfants.
      * @param string $aId
      * @return Element|null  Renvoie l'instance de l'enfant ou null si non trouvé.

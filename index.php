@@ -18,10 +18,7 @@
     <meta charset="UTF-8">
     <title>Bretzelus Portal</title>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="/sys/js/Elements.js"></script>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/sys/css/main.css">
@@ -34,12 +31,16 @@
 <body>
     <h1 id="MainTitle"> Portail </h1>
     <script>
-        var r = {
-            arg1 : "allo",
-            arg2 : "Le World!",
-            n    : 53
+        var req = {
+            CEID : "MyId",
+            C   :   "Calendar",
+            Args : {
+                D   :   [0,0],
+                M   :   4,
+                Y   :   2018
+            }
         }
-        str = JSON.stringify(r);
+        str = JSON.stringify(req);
         console.log(str);
     </script>
     <?php
@@ -66,5 +67,13 @@
     foreach(\App\Controller\Dispatcher::$Stack as $Msg) Send($Msg);
     ?>
     <div id="EventDlg"></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/sys/js/Elements.js"></script>
+<!--    <script src="/v/client/Cal.js"></script>-->
+
 </body>
 </html>

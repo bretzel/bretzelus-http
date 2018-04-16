@@ -6,7 +6,7 @@
  * Time: 13:31
  */
 
-namespace App\Calendar;
+namespace App\Model;
 
 class Event {
     protected $id;

@@ -13,4 +13,14 @@ require_once 'Element.php';
 class Window extends Element
 {
 
+    private $Caption = [];
+    public function __construct(?Element $aParent = null, ?string $aId = null)
+    {
+        parent::__construct($aParent, $aId, 'div');
+        $this->cssClass("FWindow");
+    }
+
+
+
+
 }
