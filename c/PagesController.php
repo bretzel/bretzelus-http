@@ -13,8 +13,16 @@ class PagesController extends ControllerBase
 {
     private $Name;
     private $Params = [];
+
+
+    public function __construct(Request $aReq)
+    {
+        parent::__construct($aReq);
+    }
+
     public function View(){
         Dispatcher::Debug($this);
+        $this->Render();
     }
 }
 
