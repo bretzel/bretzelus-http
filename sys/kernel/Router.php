@@ -18,7 +18,8 @@ class Router
         $request->controller = $params[0];
         $request->action = isset($params[1]) ? $params[1] : 'index';
         $request->params = array_slice($params,2);
-        echo "<pre>";print_r($request); echo "</pre>";
+//        Dispatcher::Debug($request);
+        //echo "<pre>";print_r($request); echo "</pre>";
         return true;
     }
 }
