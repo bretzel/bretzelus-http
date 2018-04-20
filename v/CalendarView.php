@@ -6,8 +6,8 @@
  * Time: 21:11
  */
 
-namespace App\View;
-require "/sys/kernel/Window.php";
+namespace Ui;
+require "Window.php";
 
 
 class CalendarView extends Window

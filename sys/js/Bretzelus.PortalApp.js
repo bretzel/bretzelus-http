@@ -1,7 +1,14 @@
 
-var PortalAppTitle = new Vue({
-    el: '#MainTitle',
-    data: {
-        Text : 'Ceci est un test!'
-    }
-})
+function ObjID(eId){
+    return document.getElementById(eId);
+}
+
+function Elements(eTagName){
+    return document.getElementsByName(eTagName);
+}
+
+function Class(eClass)
+{
+    return document.getElementsByClassName(eClass);
+}
+

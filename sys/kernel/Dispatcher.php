@@ -22,26 +22,35 @@ class Dispatcher
     public static function Dispatch():bool
     {
         $req = new Request();
-        Router::Parse($req->url, $req);
+        if($req->Empty()) {
+            Dispatcher::PushMessage(" &rarr;No Request, No Route.");
+            return false;
+        }
+        Router::Parse($req);
         $controller = Dispatcher::LoadController($req);
         $Action = $req->action;
         $controller->$Action();
         return true;
     }
 
+    /**
+     * Dispatcher constructor.
+     * @throws \Exception si instanciée!
+     */
     public function __construct()
     {
-        throw new \Exception("&larr; \App\Controller\Dispatcher ne peut être instanciée.");
-//        $this->req = new Request();
-//        Router::Parse($this->req->url, $this->req);
-//        $controller = $this->LoadController();
-//        $Action = $this->req->action;
-//        $controller->$Action();
+        throw new \Exception("&larr; \App\Controller\Dispatcher ne peut être instancié.");
     }
 
-    public static function Debug($Stuff)
+    public static function Debug($Stuff, ?string $Title=null )
     {
-        echo "<pre>"; print_r($Stuff); echo "</pre>";
+        if(isset($Title))
+            echo  "<h2>$Title</h2><pre>";
+        else
+            echo "<pre>";
+        print_r($Stuff);
+
+        echo "</pre>";
     }
 
     private static function LoadController(Request $R):object
@@ -51,9 +60,9 @@ class Dispatcher
             $file = CTRL . DS . $name . '.php';
             if(!file_exists($file))
                 Dispatcher::e404("Page introuvable.");
-            require_once $file;
+            include $file;
             $name = '\App\Controller\\' . $name;
-            return new $name();
+            return new $name($R);
         }
         catch(\Exception $e){
             Dispatcher::PushMessage($e->getMessage());

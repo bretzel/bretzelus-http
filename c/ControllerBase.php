@@ -25,14 +25,13 @@ class ControllerBase
         $view = VIEW.DS.$this->Req->ControllerName().DS.$View.'.php';
         if(!file_exists($view))
             Dispatcher::e404("Page introuvable");
-        ob_start()
-        require($view);
-        $contents = ob_get_clean();
+        //ob_start()
+        require $view ;
+//        $contents = ob_get_clean();
         require VIEW.DS.'Layout'.DS.$this->Layout.'.php';
-
-
-
     }
+
+    public function RequestObj():Request  { return $this->Req; }
 }
 
 

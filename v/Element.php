@@ -6,7 +6,7 @@
  * Time: 07:01
  */
 
-namespace App;
+namespace Ui;
 
 
 
@@ -56,6 +56,13 @@ class Element
         }
 
         $this->_Tag = $aTag;
+    }
+
+
+    public function __destruct()
+    {
+        \App\Controller\Dispatcher::PushMessage($this->_Id.": Ouais, Element::__destruct()...<br> ");
+        // TODO: Implement __destruct() method.
     }
 
     /**
@@ -114,7 +121,7 @@ class Element
 
     /**
      * Construit le text des propriétés css sérialisées.
-     * @return rien
+
      */
     protected function SerializeStyle()
     {
@@ -122,7 +129,6 @@ class Element
         foreach($this->_CssProperties as $property => $Value)
             $this->_Style .= $property.': '.$Value.'; ';
         $this->_AttrElements['Style'] = $this->_Style;
-        //$this->_Style = "";
     }
 
     /**
@@ -144,6 +150,28 @@ class Element
         //...
 
         return $this->_Out;
+    }
+
+    /**
+     *  Translates / Converts a given geometry value to the html/css value
+     *  for error (if value is not numeric value, an empty string is returned).
+     *  @param integer $value the value to translate into geometry element
+     *  @param boolean $z set to true ( for the width and height ) if the value is 0 (zero) to be translated to 'auto', false otherwize ( set to 0 )
+     *  @param string  $suffix suffix value to be appended after the value such as px,pt,em, etc...
+     */
+    static public function AutoDimHW($value, $auto, ?string $suffix='px'):string {
+        $val = $value;
+        if (intval($val) == 0) {
+            if (($auto))
+                return "auto";
+            else
+                return $val . $suffix;
+        }else {
+            if (intval($val) < 0)
+                return ($val * -1) . "%";
+        }
+
+        return $val . $suffix;
     }
 };
 

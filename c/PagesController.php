@@ -21,7 +21,7 @@ class PagesController extends ControllerBase
     }
 
     public function View(){
-        Dispatcher::Debug($this);
+        //Dispatcher::Debug($this);
         $this->Render();
     }
 }

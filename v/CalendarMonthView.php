@@ -5,10 +5,12 @@
  * Calendar: 18-04-07
  * Time: 18:27
  */
-namespace App\View;
+namespace Ui;
 
-require_once "/m/Month.php";
-require_once "/m/Events.php";
+use App\Controller\Dispatcher;
+
+require_once DATA.DS."Month.php";
+require_once DATA.DS."Events.php";
 
 
 class CalendarMonthView {
@@ -20,21 +22,27 @@ class CalendarMonthView {
      */
     private $_FirstWeekDay;
 
-    public function __construct(?\App\Model\Month $aMonth = null)
+    public function __construct(?\Model\Month $aMonth = null)
     {
-
-        if($aMonth === null)
-            $this->_Month = new \App\Model\Month();
-        else
-            $this->_Month = $aMonth;
-
+        try {
+            if ($aMonth === null)
+                $this->_Month = new \Model\Month();
+            else
+                $this->_Month = $aMonth;
+        }
+        catch(\Exception $e){
+            Dispatcher::PushMessage("Exception:".$e->getMessage());
+        }
     }
+
+
+
 
     /**
      * Affiche le calendrier du mois...
+     * @param \Model\Events|null $aEvents
      */
-
-    public function Draw(?\App\Model\Events $aEvents = null)
+    public function Draw(?\Model\Events $aEvents = null)
     {
         $weeks = $this->_Month->NumOfWeeks();
 

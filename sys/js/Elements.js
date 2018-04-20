@@ -17,7 +17,7 @@ function RequestEventsCalendar(Y)
 "            </div>"+
 "        </nav>"+
 "        <div id=\"EnvDlg__Calendar-Grid\">"+
-"            <br><p class=\"color-light\">Test...</p>"+
+"            <br><p class=\"color-light\">TestController...</p>"+
 "        </div>"+
 "    </div>"
     );
