@@ -156,10 +156,11 @@ class Element
      *  Translates / Converts a given geometry value to the html/css value
      *  for error (if value is not numeric value, an empty string is returned).
      *  @param integer $value the value to translate into geometry element
-     *  @param boolean $z set to true ( for the width and height ) if the value is 0 (zero) to be translated to 'auto', false otherwize ( set to 0 )
+     *  @param boolean $auto set to true ( for the width and height ) if the value is 0 (zero) to be translated to 'auto', false otherwize ( set to 0 )
      *  @param string  $suffix suffix value to be appended after the value such as px,pt,em, etc...
+     *  @return string  converted values
      */
-    static public function AutoDimHW($value, $auto, ?string $suffix='px'):string {
+    static public function AutoHW($value, $auto, ?string $suffix='px'):string {
         $val = $value;
         if (intval($val) == 0) {
             if (($auto))
