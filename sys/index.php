@@ -19,9 +19,11 @@ function WriteP(string $Msg)
 
 
 try {
-    if(! \App\Controller\Dispatcher::Dispatch())
+    if(! \App\Controller\Dispatcher::Dispatch()){
         //\App\Controller\Dispatcher::e404("Requête rejetée!");
         include LAYOUT.DS.'Main.php';
+        Main::Lay();
+    }
     else
         WriteP("Request success!");
 }
